@@ -3,16 +3,12 @@ FROM alpine:latest
 
 MAINTAINER caligari@treboada.net
 
-EXPOSE 8118
-
 RUN apk --no-cache add privoxy 
+ADD privoxy-start.sh /usr/local/bin/
+ADD config /etc/privoxy/
+RUN chmod +r /etc/privoxy/config && chmod +x /usr/local/bin/privoxy-start.sh
 
-COPY config /etc/privoxy/config
+CMD ["privoxy-start.sh"]
 
-RUN chown privoxy:privoxy /etc/privoxy/config
-
-VOLUME /etc/privoxy
-
-CMD /usr/sbin/privoxy --no-daemon --user privoxy.privoxy /etc/privoxy/config
-
+EXPOSE 8118
 
