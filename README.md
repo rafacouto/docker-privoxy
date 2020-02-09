@@ -9,6 +9,10 @@ The image can be pulled from https://hub.docker.com/r/caligari/privoxy/
 (please, __read the security note below__)
 
     docker run -d --name=privoxy -p 8118:8118 caligari/privoxy:latest
+
+Or, translate a sock5s service at `1.2.3.4:1234` to HTTP:
+
+    docker run -d --name=privoxy -p 8118:8118 caligari/privoxy:latest privoxy-start.sh 1.2.3.4:1234
     
 ## Test privoxy
 
